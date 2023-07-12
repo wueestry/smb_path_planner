@@ -20,7 +20,7 @@ TebLocalPlannerROS:
   global_plan_viapoint_sep: 0.5
 
   # Robot
-  max_vel_x: 0.75
+  max_vel_x: 1.0
   max_vel_y: 0.0
   max_vel_x_backwards: 0.75
   max_vel_y_backwards: 0.0
@@ -42,9 +42,9 @@ TebLocalPlannerROS:
     vertices: [[0.43, 0.43], [0.43, -0.43], [-0.43, -0.43], [-0.43, 0.43]] # for type "polygon"
 
   # GoalTolerance
-  xy_goal_tolerance: 0.4
-  yaw_goal_tolerance: 0.4
-  free_goal_vel: false
+  xy_goal_tolerance: 0.75
+  yaw_goal_tolerance: 1.0
+  free_goal_vel: True
   complete_global_plan: false
 
   # Obstacles
@@ -83,7 +83,7 @@ TebLocalPlannerROS:
   simple_exploration: True
   xy_goal_tolerance: 0.3
   yaw_goal_tolerance: 0.5
-  free_goal_vel: false
+  free_goal_vel: True
   max_number_classes: 4
   roadmap_graph_no_samples: 15
   roadmap_graph_area_width: 5

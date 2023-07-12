@@ -130,6 +130,7 @@ protected:
   std::string frame_id_;
 
   ros::Publisher plan_pub_;
+  ros::Publisher reset_waypoint_pub_;
   ros::Subscriber odometry_sub_;
   ros::Timer timer_collisions_;
 

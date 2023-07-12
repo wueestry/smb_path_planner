@@ -38,6 +38,7 @@
 
 #include <pluginlib/class_list_macros.h>
 #include <tf_conversions/tf_eigen.h>
+#include "std_msgs/Bool.h"
 
 // register this planner as a BaseOmplPlanner plugin
 PLUGINLIB_EXPORT_CLASS(smb_ompl_planner::OmplPlanner,
@@ -130,6 +131,8 @@ void OmplPlanner::initialize(std::string name, costmap_2d::Costmap2D* costmap,
                                          &OmplPlanner::odometryCallback, this);
     make_plan_srv_ = private_nh.advertiseService(
         "make_plan", &OmplPlanner::makePlanService, this);
+    
+    reset_waypoint_pub_ = private_nh.advertise<std_msgs::Bool>("/reset_waypoint", 1);
 
     // Now start the ROS timer - every time the path is in collision, we replan
     if (enable_timer_collisions)
@@ -405,11 +408,17 @@ bool OmplPlanner::makePlan(const geometry_msgs::PoseStamped& start,
   catch (ompl::Exception& ex)
   {
     ROS_ERROR("[Ompl Planner] Ompl exception: %s", ex.what());
+    std_msgs::Bool reset;
+    reset.data = false;
+    reset_waypoint_pub_.publish(reset);
     return false;
   }
 
   if (!success)
   {
+    std_msgs::Bool reset;
+    reset.data = false;
+    reset_waypoint_pub_.publish(reset);
     ROS_ERROR("[Ompl Planner] Planning failed");
     return false;
   }

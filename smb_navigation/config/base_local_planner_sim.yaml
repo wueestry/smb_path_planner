@@ -45,9 +45,9 @@ TebLocalPlannerROS:
     vertices: [[0.4, 0.4], [0.4, -0.4], [-0.4, -0.4], [-0.4, 0.4]]  # for type "polygon"
 
   # GoalTolerance
-  xy_goal_tolerance: 0.5
-  yaw_goal_tolerance: 0.2
-  free_goal_vel: false
+  xy_goal_tolerance: 0.75
+  yaw_goal_tolerance: 1.0
+  free_goal_vel: True
   complete_global_plan: false
 
   # Obstacles
