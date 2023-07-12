@@ -1,7 +1,7 @@
 # more on http://wiki.ros.org/move_base
 
 controller_frequency: 0.1
-recovery_behavior_enabled: true
+recovery_behavior_enabled: false
 clearing_rotation_allowed: false
 
 NavfnROS:
@@ -42,8 +42,8 @@ TebLocalPlannerROS:
     vertices: [[0.43, 0.43], [0.43, -0.43], [-0.43, -0.43], [-0.43, 0.43]] # for type "polygon"
 
   # GoalTolerance
-  xy_goal_tolerance: 0.75
-  yaw_goal_tolerance: 1.0
+  xy_goal_tolerance: 1.0
+  yaw_goal_tolerance: 1.5
   free_goal_vel: True
   complete_global_plan: false
 
@@ -81,8 +81,8 @@ TebLocalPlannerROS:
   enable_homotopy_class_planning: False
   enable_multithreading: True
   simple_exploration: True
-  xy_goal_tolerance: 0.3
-  yaw_goal_tolerance: 0.5
+  xy_goal_tolerance: 1.0
+  yaw_goal_tolerance: 1.5
   free_goal_vel: True
   max_number_classes: 4
   roadmap_graph_no_samples: 15

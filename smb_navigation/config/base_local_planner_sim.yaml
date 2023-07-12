@@ -1,8 +1,8 @@
 # more on http://wiki.ros.org/move_base
 
 controller_frequency: 0.1
-recovery_behavior_enabled: true
-clearing_rotation_allowed: true
+recovery_behavior_enabled: false
+clearing_rotation_allowed: false
 
 NavfnROS:
   allow_unknown: true # Specifies whether or not to allow navfn to create plans that traverse unknown space.
@@ -45,8 +45,8 @@ TebLocalPlannerROS:
     vertices: [[0.4, 0.4], [0.4, -0.4], [-0.4, -0.4], [-0.4, 0.4]]  # for type "polygon"
 
   # GoalTolerance
-  xy_goal_tolerance: 0.75
-  yaw_goal_tolerance: 1.0
+  xy_goal_tolerance: 1.0
+  yaw_goal_tolerance: 1.5
   free_goal_vel: True
   complete_global_plan: false
 
@@ -75,7 +75,7 @@ TebLocalPlannerROS:
   weight_kinematics_turning_radius: 0.5
   weight_optimaltime: 25.0
   weight_shortest_path: 1.0
-  weight_obstacle: 1
+  weight_obstacle: 50
   weight_viapoint: 1.0 # Increase to stick closer to global plan
   weight_dynamic_obstacle: 10 # not in use yet
   selection_alternative_time_cost: False # not in use yet
