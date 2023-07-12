@@ -33,7 +33,6 @@
 *.synctex.gz
 *.toc
 Makefile
-*.csv
 
 # CLion
 *.idea/
