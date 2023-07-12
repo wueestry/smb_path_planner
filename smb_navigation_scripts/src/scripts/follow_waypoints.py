@@ -66,11 +66,14 @@ class FollowPath(State):
         self.listener = tf.TransformListener()
         self.distance_tolerance = rospy.get_param('waypoint_distance_tolerance', 0.0)
         self.reset_waypoint = False
-        self.reset_waypoint_sub = rospy.Subscriber("/reset_waypoint", Bool, self._reset_waypoint_cb)
+        # self.reset_waypoint_sub = rospy.Subscriber("/reset_waypoint", Bool, self._reset_waypoint_cb)
     
-    def _reset_waypoint_cb(self, data):
-        rospy.logwarn("No path found to waypoint. Going to next waypoint")
-        self.reset_waypoint = True
+    # def _reset_waypoint_cb(self, data: Bool):
+    #     if not data.data:
+    #         rospy.logwarn("No path found to waypoint. Going to next waypoint")
+    #         self.reset_waypoint = True
+    #     else:
+    #         self.reset_waypoint = False
 
     def execute(self, userdata):
         global waypoints
@@ -89,9 +92,8 @@ class FollowPath(State):
                           (waypoint.pose.pose.position.x, waypoint.pose.pose.position.y))
             rospy.loginfo("To cancel the goal: 'rostopic pub -1 /move_base/cancel actionlib_msgs/GoalID -- {}'")
             self.client.send_goal(goal)
-            if self.reset_waypoint:
-                self.reset_waypoint = False
-                continue
+            # if self.reset_waypoint:
+            #     continue
             if not self.distance_tolerance > 0.0:
                 self.client.wait_for_result()
                 rospy.loginfo("Waiting for %f sec..." % self.duration)

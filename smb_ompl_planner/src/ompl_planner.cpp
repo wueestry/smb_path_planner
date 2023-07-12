@@ -408,20 +408,23 @@ bool OmplPlanner::makePlan(const geometry_msgs::PoseStamped& start,
   catch (ompl::Exception& ex)
   {
     ROS_ERROR("[Ompl Planner] Ompl exception: %s", ex.what());
-    std_msgs::Bool reset;
-    reset.data = false;
-    reset_waypoint_pub_.publish(reset);
+    // std_msgs::Bool reset;
+    // reset.data = false;
+    // reset_waypoint_pub_.publish(reset);
     return false;
   }
 
   if (!success)
   {
-    std_msgs::Bool reset;
-    reset.data = false;
-    reset_waypoint_pub_.publish(reset);
+    // std_msgs::Bool reset;
+    // reset.data = false;
+    // reset_waypoint_pub_.publish(reset);
     ROS_ERROR("[Ompl Planner] Planning failed");
     return false;
   }
+  // std_msgs::Bool reset;
+  // reset.data = true;
+  // reset_waypoint_pub_.publish(reset);
 
   ROS_INFO("[Ompl Planner] Planning successful");
 
